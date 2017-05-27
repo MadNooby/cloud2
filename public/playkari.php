@@ -33,7 +33,8 @@
 
 		};
 
-		$realstats=($karioke->getUserInfo($username))['status'];
+		$realstats=($karioke->getUserInfo($username));
+		$realstats=$realstats['status'];
 		if($realstats!=$stats){
 			echo $realstats." ".$stats;
 			echo "Error in sent status";

@@ -3,8 +3,8 @@
 	require_once("../private/db_connection.php");
 	require_once("../private/user.php");
 	session_start();
-	$data=array_keys($_POST);
-	$data= json_decode($data[0]);
+	$data = file_get_contents('php://input');
+	$data= json_decode($data);
 	$username=isset($data->uname)?$data->uname:null;
 	$type=isset($data->type)?$data->type:null;
 	if($type==1){
@@ -43,6 +43,9 @@
 			}
 			
 			foreach ($error as $value) {echo $value;}
+			if(count($error)==0){
+				echo "reload";
+			}
 		}else{
 			echo "Values are incomplete";
 		}		

@@ -18,7 +18,6 @@ export default class LoginDisp extends React.Component{
 		let xhr=new XMLHttpRequest();
 		xhr.open("POST","processLogin.php",true);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		console.log(d);
 		xhr.send(d);
 
 

@@ -49,7 +49,9 @@
             </select>
             
         </div>
-
+        <div>
+            <button class="w3-button" disabled id="btn-sing">CLICK AND SING</button>
+        </div>
     </div>
 
     

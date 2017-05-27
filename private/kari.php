@@ -99,7 +99,12 @@
 			$other=$db->escape($other);
 			$query="SELECT done from karioke  where name='{$other}'";
 			$r=$db->query($query);
-			if($r){return ($db->fetchSingle($r))['done']==1;}
+			if($r){
+				$rr= ($db->fetchSingle($r));
+				if($rr['done']==1){return true;}
+				else return false;
+				
+			}
 			else return "Database error";
 		}
 

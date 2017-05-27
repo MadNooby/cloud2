@@ -6,7 +6,7 @@
 			var Peer=require("simple-peer");
 
 			document.getElementById('play').addEventListener('click',function(){
-				var vendorUrl	=		window.URL || window.webkitURL;
+				var vendorUrl	=		window.URL || window.webkitURL || window.msURL;
 				let cat 		= 		document.getElementById('category');
 				let category 	=	 	encodeURIComponent(cat.options[cat.selectedIndex].value);
 				let uname		=		encodeURIComponent(document.getElementById('uname').value);
@@ -41,6 +41,7 @@
 			    	return message;
 				};
 				
+
 				
 					//navigator 
 				navigator.getMedia({audio:true,video:false},function(stream){
@@ -126,17 +127,19 @@
 					peer.on('data',function(dis){
 						// now i am here, make a button-> undisable it ->on click start voice move over
 						// rank 2 ka data transfer wi avi baki hai
-						console.log(dis+"S");
+						console.log('data');
 					});
 					peer.on('stream',function(dis){
 						// now i am here, make a button-> undisable it ->on click start voice move over
 						// rank 2 ka data transfer wi avi baki hai
-						var aud=document.createElement('audio');
-						document.body.appendChild(aud);
-						aud.src=vendorUrl.createObjectURL(stream);
-						aud.play();
-
-						console.log(dis+"S");
+						document.getElementById('btn-sing').disabled=false;
+						document.getElementById('btn-sing').addEventListener('click',function(){
+							var aud=document.createElement('audio');
+							document.body.appendChild(aud);
+							aud.src=vendorUrl.createObjectURL(dis);
+							aud.play();
+						});
+						
 					});
 
 					xhr1.onreadystatechange=function(){
@@ -154,48 +157,56 @@
 
 								}
 
-								// lets rock the status
-								if(connectionStatus==9){
-									// this 9 is a not found peer id
-								}
-								else if(connectionStatus==11){
-
-									d=4;
-									// this 11 is tht my peer id is set
-									if(done){
-										gimmeRes(uname,otheruser);
-										clearInterval(inter2);
-										//rank 2 ends here
-										return;
-									}
-									inter2=setInterval(function(){
-										xhr1.open("GET","playkari.php?&other="+encodeURIComponent(otheruser)+"&me="+encodeURIComponent(uname)+"&stats="+encodeURIComponent(d.toString())+"&number="+num++,true);
-										xhr1.send(null);
-									}.bind(this),1000);
-								}
-								else {
-									// means i have recieved the other user peer id now
+								if(connectionStatus.toLowerCase().includes('error')){
+									document.getElementById('show').innerHTML=connectionStatus;
+									document.getElementById('play').disabled=false;
 									num=0;
+									xhrr.send(null);
 									clearInterval(inter2);
-									//rank 1 ends here
-									try{
-										d=3; // beacause my turn next is to set my peer id
-										done1=true;
-										let ss="\r\n";
-										let newStr = connectionStatus.split(ss).join(" ");
-										peer.signal(newStr);
-										if(xxx){
-											gimmeRes(uname,otheruser);
-										}
-										
-									}catch(e){
-										document.getElementById('play').disabled=false;
-										xhrr.send(null);
-										document.getElementById('show').innerHTML="error in request";
-										console.log(connectionStatus);
-										console.log(e);
-									}
+								}else{
 
+									// lets rock the status
+									if(connectionStatus==9){
+										// this 9 is a not found peer id
+									}
+									else if(connectionStatus==11){
+
+										d=4;
+										// this 11 is tht my peer id is set
+										if(done){
+											gimmeRes(uname,otheruser);
+											clearInterval(inter2);
+											//rank 2 ends here
+											return;
+										}
+										inter2=setInterval(function(){
+											xhr1.open("GET","playkari.php?&other="+encodeURIComponent(otheruser)+"&me="+encodeURIComponent(uname)+"&stats="+encodeURIComponent(d.toString())+"&number="+num++,true);
+											xhr1.send(null);
+										}.bind(this),1000);
+									}
+									else {
+										// means i have recieved the other user peer id now
+										num=0;
+										clearInterval(inter2);
+										//rank 1 ends here
+										try{
+											d=3; // beacause my turn next is to set my peer id
+											done1=true;
+											let ss="\r\n";
+											let newStr = connectionStatus.split(ss).join(" ");
+											peer.signal(newStr);
+											if(xxx){
+												gimmeRes(uname,otheruser);
+											}
+											
+										}catch(e){
+											document.getElementById('play').disabled=false;
+											xhrr.send(null);
+											document.getElementById('show').innerHTML="error in request";
+											console.log(e);
+										}
+
+									}
 								}
 							}
 						}
@@ -239,7 +250,7 @@
 											document.getElementById('play').disabled=false;
 											document.getElementById('show').innerHTML="CONNECTED";
 											// idhar aagye mtlb convo start
-											peer.send("ancd");
+											peer.send(me);
 
 
 										}
