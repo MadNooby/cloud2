@@ -4,6 +4,10 @@
 	require_once("../private/user.php");
 	session_start();
 	$data = file_get_contents('php://input');
+	if(!isset($data)|| empty($data)){
+		echo "INVALID REQUEST";
+		redirectTo("index.php");
+	}
 	$data= json_decode($data);
 	$username=isset($data->uname)?$data->uname:null;
 	$type=isset($data->type)?$data->type:null;
@@ -43,9 +47,6 @@
 			}
 			
 			foreach ($error as $value) {echo $value;}
-			if(count($error)==0){
-				echo "reload";
-			}
 		}else{
 			echo "Values are incomplete";
 		}		

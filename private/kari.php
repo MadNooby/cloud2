@@ -15,7 +15,9 @@
 
 			$checkQuery="SELECT other_uname from karioke where name='{$u}'";
 			$checkData=$db->fetchSingle($db->query($checkQuery))['other_uname'];
-
+			if(!$checkData){
+				return false;
+			}
 			if($checkData!='n'){
 				if( $u[0]<$checkData[0] ){
 					$stats=4;	

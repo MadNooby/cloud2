@@ -7,7 +7,15 @@
 	session_start();
 
 	$stats=isset($_GET['stats'])?$_GET['stats']:NULL;
-	if( !isset($stats) || empty($stats) ){
+	if(!checkDataExist($_SESSION['uname'])){
+		echo "Unexpected Error";
+		redirectTo("karioke.php");
+		die();
+		exit();
+		
+
+	}
+	if( !checkDataExist($stats) ){
 		echo "Unexpected Error";
 		redirectTo("karioke.php");
 	}
@@ -16,12 +24,12 @@
 		$othersname=isset($_GET['other'])?$_GET['other']:NULL;
 		$username=isset($_GET['me'])?$_GET['me']:NULL;	
 		if( !isset($othersname) ||  !(isset($username)) ){
-			echo "Error, Not peer id/uname .";
+			echo "Error, No peer id/username found.";
 			die();
 			exit();
 		}
 		if($_SESSION['uname']!==$username){
-			echo "Error in UserName  sorry";
+			echo "Error in UserName !!";
 			die();
 			exit();	
 		}
@@ -62,14 +70,14 @@
 				echo "11"; // 11 means done seting id
 			}
 		}else{
-			echo "ERROR ! Un PROCESSABLE REQUEST";
+			echo "ERROR ! UN-PROCESSABLE REQUEST";
 		}
 
 
 
 	}
 	else if ($stats=='11' || $stats=='9'){
-		echo "Error ! Your are here now, wrong page";
+		echo "Error !  wrong page";
 	}
 	
 	

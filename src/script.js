@@ -1,5 +1,5 @@
+require("./functions.js");
 require("./module1.js");
 require("./plugins.js");
 require("./antixss.js");
-require("./functions.js");
-require("./karioke.js");
+var checkpage=document.getElementById('me');if(checkpage){if(checkpage.value==="pageK"){require("./karioke.js");}}

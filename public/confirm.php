@@ -22,11 +22,17 @@
 		die();
 	}
 
-	if($_SESSION['uname']!=$me){
+	if(checkDataExist($_SESSION['uname'])){
+		if( $_SESSION['uname']!=$me){
 			echo "Error in UserName  sorry";
 			die();
 			exit();	
 		}
+	}else{
+		echo "Error in UserName  sorry";
+			die();
+			exit();	
+	}
 	$userinfo=$user->getUserByUname($me);
 		if(count($userinfo)<2){
 			echo "Error";

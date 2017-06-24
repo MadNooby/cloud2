@@ -80,11 +80,22 @@ textarea {
     padding: 0.2em 0;
 }
 
+ul{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    
+}
+li{
+    list-style-type: none;
+}
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
 
-
+/*IDS*/
 
 #main{
     height: 100vh;
@@ -92,18 +103,173 @@ textarea {
     overflow: hidden;
 }
 
+#error{
+    text-align: left;
+    display:none;
+}
 
 
+#usr-nav{
+    height: 190px;
+    background: linear-gradient(135deg, rgb(0,173,212) 0%, rgb(42, 174, 189) 100%);
+    background: -moz-linear-gradient(135deg, rgb(0,173,212) 0%, rgb(42, 174, 189) 100%);
+    background: -ms-linear-gradient(135deg, rgb(0,173,212) 0%, rgb(42, 174, 189) 100%);
+    background: -webkit-linear-gradient(135deg, rgb(42, 174, 189) 0%, rgb(0,173,212) 100%);
+    color: white;
+
+}
+
+#logo{
+    
+}
+
+#category-div{
+    
+}
+
+/*classes*/
 
 
+.btn-circle{
+    height:150px;
+    width:150px;
+
+}
 
 
+.circular-anim{
+    animation-fill-mode: forwards;  
+    -webkit-animation: moveCircle 2s ease-in-out 0s forwards;
+    -o-animation: moveCircle 2s ease-in-out 0s forwards;
+    animation: moveCircle 2s ease-in-out 0s forwards;
+    transition: all 3s ease-in-out ;
+}
+.circle-up-anim{
+     animation-fill-mode: forwards;  
+    -webkit-animation: moveUpCircle 2s ease-in-out 0s forwards;
+    -o-animation: moveUpCircle 2s ease-in-out 0s forwards;
+    animation: moveUpCircle 2s ease-in-out 0s forwards;
+    transition: all 3s ease-in-out ;
+}
 
 
+.upload-area{
+    border:2px dotted grey;
+    height:100px;
+}
 
 
+/*keyframes*/
 
+@keyframes moveCircle {
+    0%{
+        transform:translateX(0px);
+    }25%{
+        transform:translateX(-100px);
+    }50%{
+        transform:translateY(190px) translateX(-100px);
+    }75%{
+        transform:translateY(190px) translateX(0px);
+    }100%{
+        transform:translateY(190px) translateX(0px);
+        
+    }
+}
+@-webkit-keyframes  moveCircle{
+     0%{
+        transform:translateX(0px);
+    }25%{
+        transform:translateX(-100px);
+    }50%{
+        transform:translateY(190px) translateX(-100px);
+    }75%{
+        transform:translateY(190px) translateX(0px);
+    }100%{
+        transform:translateY(190px) translateX(0px);
+        
+    }    
+}
+@-moz-keyframes  moveCircle{
+     0%{
+        transform:translateX(0px);
+    }25%{
+        transform:translateX(-100px);
+    }50%{
+        transform:translateY(190px) translateX(-100px);
+    }75%{
+        transform:translateY(190px) translateX(0px);
+    }100%{
+        transform:translateY(190px) translateX(0px);
+        
+    }
+}
+@-ms-keyframes  moveCircle{
+         0%{
+            transform:translateX(0px);
+        }25%{
+            transform:translateX(-100px);
+        }50%{
+            transform:translateY(190px) translateX(-100px);
+        }75%{
+            transform:translateY(190px) translateX(0px);
+        }100%{
+            transform:translateY(190px) translateX(0px);
+            
+        }
+    }
 
+@keyframes moveUpCircle{
+      0%{
+        transform:translateX(0px);
+    }25%{
+        transform:translateX(100px);
+    }50%{
+        transform:translateY(-190px) translateX(100px);
+    }75%{
+        transform:translateY(-190px) translateX(0px);
+    }100%{
+        transform:translateY(-190px) translateX(0px);
+    }
+}
+@-moz-keyframes moveUpCircle{
+ 0%{
+        transform:translateX(0px);
+    }25%{
+        transform:translateX(100px);
+    }50%{
+        transform:translateY(-190px) translateX(100px);
+    }75%{
+        transform:translateY(-190px) translateX(0px);
+    }100%{
+        transform:translateY(-190px) translateX(0px);
+    }
+}
+@-webkit-keyframes moveUpCircle{
+ 0%{
+        transform:translateX(0px);
+    }25%{
+        transform:translateX(100px);
+    }50%{
+        transform:translateY(-190px) translateX(100px);
+    }75%{
+        transform:translateY(-190px) translateX(0px);
+    }100%{
+        transform:translateY(-190px) translateX(0px);
+    }
+}
+@-ms-keyframes moveUpCircle{
+ 0%{
+        transform:translateX(0px);
+    }25%{
+        transform:translateX(100px);
+    }50%{
+        transform:translateY(-190px) translateX(100px);
+    }75%{
+        transform:translateY(-190px) translateX(0px);
+    }100%{
+        transform:translateY(-190px) translateX(0px);
+    }
+}
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -113,7 +279,7 @@ textarea {
  */
 
 .hidden {
-    display: none !important;
+    display: none ;
 }
 
 /*

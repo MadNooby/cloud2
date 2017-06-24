@@ -23,5 +23,12 @@
 
 	}
 
+	function checkDataExist($x){
+		if(isset($x) && !empty($x)){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
  ?>

@@ -44,9 +44,9 @@
 	
 		public function getRows($r){
 			if($r){return mysqli_num_rows($r);}
-			// constructor
+		
 		}
-
+				// constructor
 		function __construct(){
 			$this->open_connection();
 		}
