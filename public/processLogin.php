@@ -39,7 +39,7 @@
 				if(strlen($pass)<6 || strlen($fname)<3 || strlen($lname)<3||strlen($mobile)<9||strlen($mobile)>13){array_push($error,"names must be length greater than 3 and password must be greater than 5");}
 				if(count($error)==0){
 					$inserted=$user->insertUser($fname,$lname,secure($pass),$username,$mobile);
-					if($inserted){$_SESSION['uname']=$user->username;}
+					if($inserted){$_SESSION['uname']=$user->username;echo "reload";}
 					else {array_push($error,"UserName Already Exist");}
 				}
 			}else{
